@@ -88,7 +88,7 @@ df-messenger iframe {
     .custom-icon {
         max-width: 60px; /* Adjust size for smaller screens */
         max-height: 60px; /* Adjust size for smaller screens */
-        bottom: 10px; /* Adjust position for smaller screens */
+        bottom: 100px; /* Adjust position for smaller screens */
         left: 10px; /* Adjust position for smaller screens */
     }
 }
