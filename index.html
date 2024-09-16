@@ -32,19 +32,7 @@
         </df-messenger>
         <img src="right.png" alt="Custom Icon" class="custom-icon">
     </div>
-    <script>
-        // Wait for df-messenger to be fully rendered
-        const observer = new MutationObserver(() => {
-            const chatIcon = document.querySelector('df-messenger ::part(icon)');
-            if (chatIcon) {
-                chatIcon.style.width = '180px'; // Adjust size
-                chatIcon.style.height = '180px'; // Adjust size
-                observer.disconnect(); // Stop observing once done
-            }
-        });
-
-        observer.observe(document.querySelector('df-messenger'), { childList: true, subtree: true });
-    </script>
+   
 </body>
 
 </html>
