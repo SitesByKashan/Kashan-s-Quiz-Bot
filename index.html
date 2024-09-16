@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kashan's Quiz Bot</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Background and Overlay */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars */
+        }
+
         .hero-bg {
             background-image: url('https://t3.ftcdn.net/jpg/04/51/39/94/240_F_451399400_vx5h2EGBF70q7t2Pg4qAA08ZjGM9r8pg.jpg');
             background-size: cover;
@@ -15,97 +21,98 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Overlay */
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for better contrast */
-            z-index: 2;
-        }
-        
-        /* Text container styles */
-        .content {
-            z-index: 3;
-            text-align: center;
-            color: white;
-            max-width: 600px;
-            padding: 10px; /* Less padding on mobile */
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            backdrop-filter: blur(5px); /* Subtle blur for better focus on text */
+            overflow: hidden;
         }
 
-        /* Button styles */
-        .button-attractive {
-            background: linear-gradient(90deg, #1f8ef1, #a89cf6); /* Gradient button */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease, background 0.3s ease;
+        .chat-icon {
+            width: 60px;
         }
+
+        df-messenger {
+            --df-messenger-bot-message: #1e293b;
+            --df-messenger-user-message: #4f46e5;
+            --df-messenger-font-color: #ffffff;
+            --df-messenger-button-titlebar-color: #2563eb;
+            --df-messenger-chat-window-height: 100%;
+            --df-messenger-chat-window-width: 100%;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        df-messenger iframe {
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        @media (max-width: 767px) {
+            df-messenger iframe {
+                height: 100vh !important;
+            }
+        }
+
+        .button-attractive {
+            background: linear-gradient(90deg, #1f8ef1, #a89cf6);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
         .button-attractive:hover {
             background: linear-gradient(90deg, #1a74f5, #9e8cd7);
-            transform: scale(1.05); /* Button grows slightly on hover */
         }
 
-        /* Chatbot icon styles */
-        .df-messenger {
-            --df-messenger-bot-message-background: #1a202c; /* Custom bot message background color */
-            --df-messenger-user-message-background: #2d3748; /* Custom user message background color */
-            --df-messenger-font-color: #ffffff;
-            --df-messenger-chat-icon-background: #e73c3c;
+        .full-screen-chat {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            background: rgba(40, 39, 39, 0.8); /* Optional: Adds a dark overlay */
         }
 
-        /* Animations */
-        .fade-in {
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
+        @media (max-width: 640px) {
+            .full-screen-chat {
+                height: 100vh;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
+
 <body class="font-sans antialiased">
 
     <!-- Hero Section -->
-    <section class="hero-bg">
-        <div class="overlay"></div>
-        <div class="content mx-4 md:mx-auto text-center"> <!-- Added mx-4 for mobile padding -->
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 fade-in">Welcome to Kashan's Quiz Bot</h1> <!-- Smaller text for mobile -->
-            <p class="text-lg md:text-xl mb-6 fade-in">Join Kashan's team on a merit basis and showcase your skills with our interactive quiz bot.</p>
-            <button id="open-chatbot" class="button-attractive text-white px-4 py-2 md:px-6 md:py-3 rounded-lg text-lg focus:outline-none fade-in">Start the Quiz</button> <!-- Adjusted padding for mobile -->
-            <div id="chatbot" class="hidden mt-8 text-left">
-                <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-                <df-messenger
-                  intent="WELCOME"
-                  chat-title="GIAIC-Quiz"
-                  chat-icon="chatbotPic.png"
-                  agent-id="a0643ac0-5421-405e-8580-19813b74ff6e"
-                  language-code="en"
-                ></df-messenger>
-            </div>
+    <section class="hero-bg text-white text-center">
+        <div class="bg-opacity-80 p-8 rounded-lg w-full max-w-md mx-auto">
+            <h1 class="text-3xl md:text-4xl font-extrabold mb-4">Welcome to Kashan's Quiz Bot</h1>
+            <p class="text-lg md:text-xl mb-6">Join Kashan's team on a merit basis and showcase your skills with our interactive quiz bot.</p>
         </div>
     </section>
 
-    <script>
-        document.getElementById('open-chatbot').addEventListener('click', function() {
-            document.getElementById('chatbot').classList.remove('hidden');
-            document.querySelector('df-messenger').showDialog(); // Open the chatbot
-        });
-    </script>
+    <!-- Full-screen Chatbot -->
+    <div id="fullScreenChatbot" class="hidden full-screen-chat">
+        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+        <df-messenger
+         intent="WELCOME" 
+         chat-title="GIAIC-Quiz" 
+         chat-icon="chatbotPic.png" 
+         agent-id="a0643ac0-5421-405e-8580-19813b74ff6e" 
+         language-code="en"
+         >
+        </df-messenger>
+    </div>
 
 </body>
+
 </html>
