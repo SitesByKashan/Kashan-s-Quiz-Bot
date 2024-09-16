@@ -1,0 +1,80 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Prevents scrollbars */
+}
+
+.hero-bg {
+    background-image: url('https://t3.ftcdn.net/jpg/04/51/39/94/240_F_451399400_vx5h2EGBF70q7t2Pg4qAA08ZjGM9r8pg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.chat-icon {
+    width: 60px;
+}
+
+df-messenger {
+    --df-messenger-bot-message: #1e293b;
+    --df-messenger-user-message: #4f46e5;
+    --df-messenger-font-color: #ffffff;
+    --df-messenger-button-titlebar-color: #2563eb;
+    --df-messenger-chat-window-height: 100%;
+    --df-messenger-chat-window-width: 100%;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+df-messenger iframe {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+@media (max-width: 767px) {
+    df-messenger iframe {
+        height: 100vh !important;
+    }
+}
+
+.button-attractive {
+    background: linear-gradient(90deg, #1f8ef1, #a89cf6);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button-attractive:hover {
+    background: linear-gradient(90deg, #1a74f5, #9e8cd7);
+}
+
+.full-screen-chat {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    background: rgba(40, 39, 39, 0.8); /* Optional: Adds a dark overlay */
+}
+
+@media (max-width: 640px) {
+    .full-screen-chat {
+        height: 100vh;
+    }
+}
+
+@media (max-width: 640px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
