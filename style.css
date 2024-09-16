@@ -71,7 +71,7 @@ df-messenger iframe {
     .custom-icon {
         max-width: 50px; /* Further adjust size for very small screens */
         max-height: 50px; /* Further adjust size for very small screens */
-        bottom: 15px; /* Adjust position for very small screens */
+        bottom: 5px; /* Adjust position for very small screens */
         left: 5px; /* Adjust position for very small screens */
     }
 }
@@ -88,7 +88,7 @@ df-messenger iframe {
     .custom-icon {
         max-width: 60px; /* Adjust size for smaller screens */
         max-height: 60px; /* Adjust size for smaller screens */
-        bottom: 100px; /* Adjust position for smaller screens */
+        bottom: 60px; /* Adjust position for smaller screens */
         left: 10px; /* Adjust position for smaller screens */
     }
 }
