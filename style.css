@@ -41,15 +41,6 @@ df-messenger iframe {
     }
 }
 
-.button-attractive {
-    background: linear-gradient(90deg, #1f8ef1, #a89cf6);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.button-attractive:hover {
-    background: linear-gradient(90deg, #1a74f5, #9e8cd7);
-}
-
 .full-screen-chat {
     position: fixed;
     top: 0;
@@ -61,13 +52,17 @@ df-messenger iframe {
     justify-content: center;
     z-index: 50;
     background: rgba(40, 39, 39, 0.8); /* Optional: Adds a dark overlay */
+    overflow: hidden;
 }
 
-@media (max-width: 640px) {
-    .full-screen-chat {
-        height: 100vh;
-    }
+.custom-icon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px; /* Adjust the size as needed */
+    margin: 16px; /* Add some margin to avoid touching the edges */
 }
+
 
 @media (max-width: 640px) {
     h1 {
